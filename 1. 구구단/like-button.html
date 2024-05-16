@@ -15,30 +15,39 @@
   <script type="text/babel">
     'use strict';
     class GuGuDan extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          first: Math.ceil(Math.random() * 9),
-          last: Math.ceil(Math.random() * 9),
-          value: '',
-          result: ''
-        }
+      state = {
+        first: Math.ceil(Math.random() * 9),
+        last: Math.ceil(Math.random() * 9),
+        value: '',
+        result: ''
       }
+
+      /*실무에서는 constructor를 거의 사용하지 않음 이렇게 바로 사용함*/
+
       /* 변할 것들은 다 state를 넣어준다. */
 
       onSubmit = (e) => {
         e.preventDefault();
         if (parseInt(this.state.value) === this.state.first * this.state.last) {
-          this.setState({
-            result: this.state.value + ' 🅾️',
-            first: Math.ceil(Math.random() * 9),
-            last: Math.ceil(Math.random() * 9),
-            value: ''
+          this.setState((prevState) => {
+            return {
+              result: '정답 : ' + prevState.value + ' 🅾️',
+              first: Math.ceil(Math.random() * 9),
+              last: Math.ceil(Math.random() * 9),
+              value: ''
+            }
+
+
+            /*예전 스테이트의 값으로 새로운 스테이트를 만들 때에는 이렇게 
+            리턴을 해주는 함수를 사용하는 걸로 */
+
           })
+          this.input.focus()
         } else {
           this.setState({
-            result: '❌',
+            result: '땡 ❌',
             value: ''
+
           })
         }
       }
@@ -46,21 +55,28 @@
       onChange = (e) => {
         this.setState({ value: e.target.value })
       }
+      /* 밖으로 뺸 함수들(직접 만들어준 함수) 은 화살표 함수만 사용 가능 function () 사용 금지!*/
 
+      // input;
 
+      onRefInput = (c) => {
+        this.input = c;
+      };
 
       render() {
         return (
-          <div>
+          <React.Fragment>
             <div>{this.state.first} 곱하기 {this.state.last} 는? </div>
             <form onSubmit={this.onSubmit}>
-              <input type="number" value={this.state.value} onChange={this.onChange} />
+              <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange} />
 
-              <button> 입력 </button>
+              <button type='submit'> 입력 </button>
             </form>
             <div>{this.state.result}</div>
-          </div>
+          </React.Fragment>
         )
+        /* 소괄호는 있으나 마나 -> 없어도 에러나지 않음 () 그룹연산자라고 함 
+        우선순위를 적용할 때 빼고는 딱히 적용되는게 없음*/
       }
     }
 
