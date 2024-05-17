@@ -25,7 +25,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '../dist'), // lecture 폴더 상위의 dist 폴더로 경로 수정
     filename: 'app.js',
   },
 };
