@@ -1,31 +1,47 @@
 const path = require('path');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
-  name: 'wordrelay-setting',
+  name: 'word-relay-dev',
   mode: 'development',
-  devtool: 'eval',
+  devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
   entry: {
-    app: ['./client.jsx'],
+    app: './client',
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/env', '@babel/react'],
-          },
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: { browsers: ['last 2 chrome versions'] },
+                debug: true,
+              },
+            ],
+            '@babel/preset-react',
+          ],
+          plugins: ['react-refresh/babel'],
         },
+        exclude: path.join(__dirname, 'node_modules'),
       },
     ],
   },
+  plugins: [new ReactRefreshWebpackPlugin()],
   output: {
-    path: path.join(__dirname, '../dist'), // lecture 폴더 상위의 dist 폴더로 경로 수정
+    path: path.join(__dirname, 'dist'),
     filename: 'app.js',
+    publicPath: '/dist',
+  },
+  devServer: {
+    devMiddleware: { publicPath: '/dist' },
+    static: { directory: path.resolve(__dirname) },
+    hot: true,
   },
 };

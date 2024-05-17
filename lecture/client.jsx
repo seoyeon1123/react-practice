@@ -1,6 +1,5 @@
-const React = require('react');
-const ReactDom = require('react-dom');
+import React from 'react';
+import { createRoot } from 'react-dom/client'; // 이 부분 수정
+import WordRelay from './wordRelay-hooks';
 
-const WordRelay = require('./wordRelay');
-
-ReactDom.render(<WordRelay />, document.querySelector('#root'));
+createRoot(document.querySelector('#root')).render(<WordRelay />);
