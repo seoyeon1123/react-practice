@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RenderAverage from './renderAverage';
 
 class ResponseChecked extends Component {
   state = {
@@ -44,21 +45,26 @@ class ResponseChecked extends Component {
     }
   };
 
-  renderAverage = () => {
-    const { result } = this.state;
-    return result.length === 0 ? null : (
-      <div>평균 시간: {result.reduce((a, c) => a + c) / result.length} ms</div>
-    );
+  onReset = () => {
+    this.setState({
+      result: [],
+      state: 'waiting',
+      message: '클릭해서 시작하세요 ',
+    });
   };
 
   render() {
-    const { state, message } = this.state;
+    const { state, message, result } = this.state;
     return (
       <>
         <div id="screen" className={state} onClick={this.onClickScreen}>
           {message}
         </div>
-        {this.renderAverage()}
+        <RenderAverage
+          key={result.length}
+          result={result}
+          onReset={this.onReset}
+        />
       </>
     );
   }
