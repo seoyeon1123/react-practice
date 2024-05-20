@@ -23,17 +23,15 @@ class Baseball extends Component {
   };
 
   onSubmitForm = (e) => {
+    const { value, result, answer, tries } = this.state;
     e.preventDefault();
     //맞췄을 때
 
-    if (this.state.value === this.state.answer.join('')) {
+    if (value === answer.join('')) {
       this.setState({
         result: '정답 !',
         value: '',
-        tries: [
-          ...this.state.tries,
-          { try: this.state.value, result: '홈런!' },
-        ],
+        tries: [...tries, { try: value, result: '홈런!' }],
       });
       setTimeout(() => {
         alert('게임을 다시 시작합니다');
@@ -46,12 +44,15 @@ class Baseball extends Component {
       }, 3000);
     } else {
       //10번 이상 틀렸을 때.
-      const answerArray = this.state.value.split('').map((v) => parseInt(v));
+      const answerArray = value.split('').map((v) => parseInt(v));
       //사용자가 입력한 값을, 배열로 묶고 다시 문자열로 치환
       let strike = 0;
       let ball = 0;
 
-      if (this.state.tries.length >= 9) {
+      if (tries.length >= 9) {
+        this.setState({
+          result: `실패 : 정답은 ${answer.join(',')} 입니다.`,
+        });
         setTimeout(() => {
           alert('게임을 다시 시작합니다');
           this.setState({
@@ -64,9 +65,9 @@ class Baseball extends Component {
       } else {
         //10번 이전 실행
         for (let i = 0; i < answerArray.length; i++) {
-          if (answerArray[i] === this.state.answer[i]) {
+          if (answerArray[i] === answer[i]) {
             strike += 1;
-          } else if (this.state.answer.includes(answerArray[i])) {
+          } else if (answer.includes(answerArray[i])) {
             ball += 1;
           }
         }
@@ -74,9 +75,9 @@ class Baseball extends Component {
         this.setState({
           value: '',
           tries: [
-            ...this.state.tries,
+            ...tries,
             {
-              try: this.state.value,
+              try: value,
               result: `${strike} 스트라이크 ${ball} 볼 입니다`,
             },
           ],
@@ -95,23 +96,24 @@ class Baseball extends Component {
   };
 
   render() {
+    const { result, value, tries } = this.state;
     return (
       <>
         <h1>⚾️ Number BaseBall ⚾️</h1>
-        <div>{this.state.result}</div>
+        <div>{result}</div>
         <form onSubmit={this.onSubmitForm}>
           <input
             type="number"
-            value={this.state.value}
+            value={value}
             maxLength={4}
             onChange={this.onChangeForm}
           />
           <button>입력</button>
         </form>
-        <div>시도 : {this.state.tries.length}</div>
+        <div>시도 : {tries.length}</div>
 
         <ul>
-          {this.state.tries.map((v, i) => (
+          {tries.map((v, i) => (
             <Try key={`try-${i}`} tryInfo={v} />
           ))}
         </ul>
