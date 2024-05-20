@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Try from './try';
 
 function getNumber() {
@@ -63,6 +63,7 @@ const BaseBall = () => {
         setValue('');
       }
     }
+    inputRef.current.focus();
   };
 
   const onChangeInput = (e) => {
@@ -72,6 +73,8 @@ const BaseBall = () => {
     }
   };
 
+  const inputRef = useRef();
+
   return (
     <>
       <h1>⚾️ Number BaseBall ⚾️</h1>
@@ -79,6 +82,7 @@ const BaseBall = () => {
       <form onSubmit={onSubmitForm}>
         <input
           type="text"
+          ref={inputRef}
           value={value}
           onChange={onChangeInput}
           maxLength={4}

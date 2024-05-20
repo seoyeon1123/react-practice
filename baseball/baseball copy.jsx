@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import Try from './try';
 
 //숫자 랜덤으로 4개 뽑기
@@ -82,6 +82,7 @@ class Baseball extends Component {
             },
           ],
         });
+        this.inputRef.current.focus();
       }
     }
   };
@@ -95,6 +96,8 @@ class Baseball extends Component {
     }
   };
 
+  inputRef = createRef();
+
   render() {
     const { result, value, tries } = this.state;
     return (
@@ -104,6 +107,7 @@ class Baseball extends Component {
         <form onSubmit={this.onSubmitForm}>
           <input
             type="number"
+            ref={this.inputRef}
             value={value}
             maxLength={4}
             onChange={this.onChangeForm}
