@@ -1,5 +1,11 @@
-#computer {
-  width: 125px;
-  height: 200px;
-  background-position: 0 0;
+.rock {
+  background-image: url('./img/주먹.jpeg');
+}
+
+.scissors {
+  background-image: url('./img/가위.jpeg');
+}
+
+.paper {
+  background-image: url('./img/보.jpeg');
 }

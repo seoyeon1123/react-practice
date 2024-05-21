@@ -1,4 +1,5 @@
 const path = require('path');
+
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
@@ -30,6 +31,18 @@ module.exports = {
           plugins: ['react-refresh/babel'],
         },
         exclude: path.join(__dirname, 'node_modules'),
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'img', // 이미지 파일이 복사될 경로를 지정합니다.
+            },
+          },
+        ],
       },
     ],
   },
