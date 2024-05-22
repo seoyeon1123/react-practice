@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import RenderAverage from './renderAverage';
+import RenderAverage from '../renderAverage';
 
 const ResponseChecked = () => {
   const [state, setState] = useState('waiting');
@@ -41,6 +41,7 @@ const ResponseChecked = () => {
 
   return (
     <>
+      <h1>당신의 반응속도는 ❓ </h1>
       <div id="screen" className={state} onClick={onClickScreen}>
         {message}
       </div>

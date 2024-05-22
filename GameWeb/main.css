@@ -2,9 +2,6 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   background-color: #f0f0f0;
 }
@@ -13,17 +10,26 @@ body {
   text-align: center;
 }
 
-h1 {
+.title {
   margin-bottom: 20px;
+  color: orchid;
+  margin-top: 0; /* h1의 기본 margin을 없애줍니다. */
+  margin-left: 50px;
 }
 
-ul {
+.games {
+  padding-bottom: 20px;
   list-style-type: none;
-  padding: 0;
+  text-align: center;
+  margin-right: 30px;
 }
 
 li {
   margin-bottom: 10px;
+}
+
+.game2 {
+  margin: 30px;
 }
 
 a {
@@ -31,6 +37,7 @@ a {
   color: #333;
   background-color: #f0f0f0;
   padding: 10px 20px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   transition: background-color 0.3s ease;
@@ -38,4 +45,8 @@ a {
 
 a:hover {
   background-color: #ddd;
+}
+
+.mainPage {
+  text-align: center;
 }
