@@ -1,0 +1,10 @@
+body {
+  text-align: center;
+  background-image: url('./food-7382109_1280.jpg');
+  background-size: cover; /* 화면에 꽉 차도록 설정 */
+  background-repeat: no-repeat; /* 반복 없이 설정 */
+  background-position: 50% 20%;
+}
+
+h1 {
+}
