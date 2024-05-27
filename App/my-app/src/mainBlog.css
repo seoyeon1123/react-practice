@@ -1,10 +1,39 @@
-body {
-  text-align: center;
-  background-image: url('./food-7382109_1280.jpg');
-  background-size: cover; /* 화면에 꽉 차도록 설정 */
-  background-repeat: no-repeat; /* 반복 없이 설정 */
-  background-position: 50% 20%;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 높이의 100%만큼의 높이를 가짐 */
+}
+
+header {
+  margin-bottom: 20px; /* 헤더와 내용 사이의 간격 조정 */
 }
 
 h1 {
+  color: honeydew;
+  font-size: 3em;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin-bottom: 10px; /* 각 메뉴 아이템 사이의 간격 조정 */
+}
+
+nav ul li button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ffa600;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+nav ul li button:hover {
+  background-color: #b37700;
 }
