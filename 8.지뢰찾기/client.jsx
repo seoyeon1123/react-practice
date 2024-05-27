@@ -1,5 +1,5 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import TicTacToe from './tictactoe';
+import MineSearch from './mineSearch';
 
-createRoot(document.querySelector('#root')).render(<TicTacToe />);
+createRoot(document.querySelector('#root')).render(<MineSearch />);
